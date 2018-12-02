@@ -47,13 +47,18 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
+        alert('username::::'+this.f.username.value);
+        alert('password::::'+this.f.password.value);
+        
         this.authenticationService.login(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 data => {
+                    alert('inside success:::');
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
+                    alert('inside error:::');
                     this.alertService.error(error);
                     this.loading = false;
                 });

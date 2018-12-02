@@ -24,6 +24,12 @@ export class AuthenticationService {
         return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
+                alert('user.id:::'+user.id);
+                alert('user.firstName:::'+user.firstName);
+                alert('user.lastName:::'+user.lastName);
+                alert('user.username:::'+user.username);
+                alert('user.password:::'+user.password);
+                alert('user.token:::'+user.token);
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));

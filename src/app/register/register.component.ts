@@ -10,7 +10,6 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
-    result = String;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -46,16 +45,20 @@ export class RegisterComponent implements OnInit {
         }
 
         this.loading = true;
+        alert('before:::');
         this.userService.register(this.registerForm.value)
             .pipe(first())
             .subscribe(
                 data => {
+                    alert('inside success:::');
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login']);
                 },
                 error => {
+                    alert('inside error:::');
                     this.alertService.error(error);
                     this.loading = false;
                 });
+        alert('after:::');
     }
 }
